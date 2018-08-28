@@ -42,6 +42,7 @@ App = {
     $(document).on('click', '#createProfile', App.createProfile);
     $(document).on('click', '#createSurvey', App.createSurvey);
     $(document).on('click', '#getSurveyContent', App.getSurveyContent);
+    $(document).on('click', '#addAddress', App.approveAddress);
   },
 
   getProfile: function() {
@@ -180,6 +181,21 @@ App = {
         <td>` + surveyAnswer[5] + `</td>
         <td>` + surveyAnswer[6] + `</td></tr>`)
       return surveyAnswer;
+    }).catch(function(e) {
+      console.log(e);
+      console.log("ERROR 404");
+    });
+  },
+
+  approveAddress: function(event) {
+    userAddress = web3.eth.accounts[0];
+
+    var meta;
+    App.contracts.SurveyFactory.deployed().then(function(instance) {
+      meta = instance;
+      return meta.addApprovedAddress($('#addressToApprove').val());
+    }).then(function(response) {
+      console.log(response);
     }).catch(function(e) {
       console.log(e);
       console.log("ERROR 404");

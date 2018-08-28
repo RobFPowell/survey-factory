@@ -92,8 +92,24 @@ contract('SurveyFactory', function(accounts) {
 		});
 	});
 
-	it("should create new survey", async () => {
+	it("should not create new survey if address is not approved", async () => {
 		let instance = await SurveyFactory.deployed();
+		return SurveyFactory.deployed()
+			.then(function(factory) {
+				return factory.createSurvey("QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn",10,5,"US",10,50,"M", {from: accounts[0]});
+			})
+			.then(assert.fail)
+			.catch(function(error) {
+				assert.equal(
+					error.message,
+					'VM Exception while processing transaction: revert'
+			)
+		});
+	});	
+
+	it("should create new survey if approved address, valid inputs, and enough user balance", async () => {
+		let instance = await SurveyFactory.deployed();
+		let approveUser = await instance.addApprovedAddress(accounts[0]);
 		let withdraw = await instance.createSurvey("QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn",10,5,"US",10,50,"M");
 		let survey = await instance.surveys(0);
 		assert.equal(survey[0], accounts[0]);
@@ -119,6 +135,7 @@ contract('SurveyFactory', function(accounts) {
 
 	it("should answer survey and get paid if profile fits survey criteria", async () => {
 		let instance = await SurveyFactory.deployed();
+		let approveUser = await instance.addApprovedAddress(accounts[1]);
 		let submitAnswer = await instance.answerSurvey(0,0, {from: accounts[1]});
 		let newBalance = await instance.getBalance({from: accounts[1]});
 		let surveyGet = await instance.surveys(0);

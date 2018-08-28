@@ -22,6 +22,12 @@ contract SurveyFactory {
 
     mapping (address => uint) private balances;
 
+    mapping (address => bool) public approved;
+    modifier isApproved {
+        require(approved[msg.sender] == true);
+        _;
+    }
+
     struct userProfile {
         string country;
         uint age;
@@ -69,6 +75,13 @@ contract SurveyFactory {
         _; 
     }
 
+    function addApprovedAddress (address addressToApprove) 
+        isOwner
+        public
+    {
+        approved[addressToApprove] = true;
+    }
+
     function toggleCircuitBreaker () 
         isOwner
         public
@@ -113,6 +126,7 @@ contract SurveyFactory {
     }
 
     function createSurvey (string ipfsHashInput, uint surveyFunding, uint payRateInput, string nationality, uint ageMin, uint ageMax, string gender)
+        isApproved
         public
         returns (string)
     {
@@ -137,6 +151,7 @@ contract SurveyFactory {
     }
 
     function answerSurvey (uint surveyAnswered, uint answer) 
+        isApproved
         public
         returns (uint)
     {
