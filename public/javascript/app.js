@@ -105,7 +105,6 @@ App = {
       // console.log(survey);
       $('#surveyTable').append(`
         <tr><td>` + i + `</td>
-        <td>` + survey[1] + `</td>
         <td>` + web3.fromWei(survey[2], 'ether').toString() + `</td>
         <td>` + web3.fromWei(survey[3], 'ether').toString() + `</td>
         <td>` + survey[4] + `</td>
