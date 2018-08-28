@@ -33,6 +33,7 @@ App = {
     App.getBalance();
     App.getSurveysLength();
     App.getSurveyAnswerLength();
+    App.getApproved();
     return App.bindEvents();
   },
 
@@ -43,6 +44,26 @@ App = {
     $(document).on('click', '#createSurvey', App.createSurvey);
     $(document).on('click', '#getSurveyContent', App.getSurveyContent);
     $(document).on('click', '#addAddress', App.approveAddress);
+  },
+
+  getApproved: function() {
+    userAddress = web3.eth.accounts[0].toString();
+    var meta;
+    App.contracts.SurveyFactory.deployed().then(function(instance) {
+      meta = instance;
+      return meta.approved.call(userAddress);
+    }).then(function(approvedBool) {
+      if (approvedBool) {
+        $('#userAddress').append(' is Approved');
+        console.log(approvedBool);
+      } else {
+        $('#userAddress').append(' is Not Approved');
+      }
+      return approvedBool;
+    }).catch(function(e) {
+      console.log(e);
+      console.log("ERROR 404");
+    });
   },
 
   getProfile: function() {
