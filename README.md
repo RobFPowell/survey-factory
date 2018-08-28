@@ -33,3 +33,5 @@ truffle migrate
 
 Run tests with 
 truffle test
+
+Note: IPFS connects to a remote node and will only store files for a couple hours before being dropped.

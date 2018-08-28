@@ -46,6 +46,7 @@ When users earn funds from surveys they are not paid out automatically but funds
 Off Chain Storage
 
 Used IPFS to store survey question and answers off chain. When users create a survey the content is uploaded to IPFS and the hash of the file is saved as Surveys[].ipfsHash in the contract.
+Note: IPFS connects to a remote node and will only store files for a couple hours before being dropped.
 
 
 Fail Early and Fail Hard
