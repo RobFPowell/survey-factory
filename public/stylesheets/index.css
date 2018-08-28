@@ -1,0 +1,19 @@
+.contentArea {
+	width: 70%;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-bottom: 20px;
+	background-color: skyblue;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.areaTitle {
+	padding: 10px;
+	font-size: 20px;
+}
+
+.appLogo {
+	font-size: 40px;
+	text-align: center;
+}

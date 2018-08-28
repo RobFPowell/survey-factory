@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Dapp</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/web3.min.js"></script>
+    <script type="text/javascript" src="javascript/truffle-contract.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/browser-buffer@0.0.1-1/dist/buffer.min.js"></script>
+    <link href="stylesheets/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="appLogo">Survey Factory</div>
+
+  <div class="contentArea">
+    <div class="areaTitle">User Account</div>
+    <div id="userAddress">No Selected Address</div>
+    <div id="userProfile">No User Profile For Current Address</div>
+    <input type="text" id="country" placeholder="2 Digit Country Code">
+    <input type="text" id="age" placeholder="Age">
+    <input type="radio" name="sex" value="M">Male
+    <input type="radio" name="sex" value="F">Female
+    <button id="createProfile">Create Profile</button>
+  </div>
+
+  <div class="contentArea">
+    <div class="areaTitle">User Funds</div>
+    <div id="userBalance">0 ETH</div>
+
+    <input type="text" id="depositAmount" placeholder="Ether">
+    <button id="deposit">Deposit</button>
+    <br>
+
+    <input type="text" id="withdrawalAmount" placeholder="Ether">
+    <button id="withdraw">Withdraw</button>
+  </div>
+
+  <div class="contentArea">
+    <div class="areaTitle">Surveys</div>
+
+    <input type="text" id="question" value="What is your favorite color">
+    <input type="text" id="answerA" value="Red">
+    <input type="text" id="answerB" value="Green">
+    <input type="text" id="answerC" value="Blue">
+    <input type="text" id="answerD" value="Yellow">
+    <input type="text" id="nationalityReq" value="US">
+    <input type="text" id="minAge" value="20">
+    <input type="text" id="maxAge" value="50">
+    <input type="text" id="budget" value="1">
+    <input type="text" id="payRate" value="0.1">
+    <input type="radio" name="sexReq" value="M">Male
+    <input type="radio" name="sexReq" value="F">Female
+    <button id="createSurvey">Create Survey</button>
+
+    <div class="areaTitle">All Surveys</div>
+
+    <table style="width:100%" id="surveyTable">
+      <tr>
+        <th>Survey Number</th>
+        <th>IPFS Hash</th> 
+        <th>Balance</th>
+        <th>Pay Rate</th>
+        <th>Country</th>
+        <th>Min Age</th>
+        <th>Max Age</th>
+        <th>Gender</th>
+      </tr>
+    </table>
+    
+  </div>
+
+  <div class="contentArea">
+    <div class="areaTitle">Answer Survey</div>
+    <input type="text" id="surveyNumber" placeholder="Survey Number">
+    <button id="getSurveyContent">Get Survey</button>
+    <br>
+    <div id="surveyAnswerArea"></div>
+
+    <div class="areaTitle">All Submitted Answers</div>
+    <table style="width:100%" id="surveyAnswerTable">
+      <tr>
+        <th>Survey Number</th>
+        <th>Participant</th> 
+        <th>Pay Rate</th>
+        <th>Answer</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+    </table>
+  </div>
+
+  <script src="javascript/app.js"></script>
+</body>
+</html>
