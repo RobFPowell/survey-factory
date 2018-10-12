@@ -21,27 +21,33 @@ Copy and paste ganache mnemonic into Metamask Ethereum wallet extension
 Download project from github link
 
 ```
-npm install
+$ npm install
 ```
 
 Web app uses lite-server and will run on localhost:3000. To start app:
 
 ```
-npm run dev
+$ npm run dev
 ```
 
 Compile and migrate contracts. Truffle.js set network port and id. If compile doesn't work try deleting build folder.
 
 ```
-truffle compile
+$ truffle compile
 
-truffle migrate
+$ truffle migrate
 ```
 
 ## Run tests 
 
 ```
-truffle test
+$ truffle test
 ```
+
+## Built With
+
+* [Truffle](https://truffleframework.com/docs/truffle/overview) - Ethereum smart contract development framework
+* [Ganache](https://truffleframework.com/docs/ganache/overview) - Private development blockchain
+* [IPFS](https://github.com/ipfs/js-ipfs) - Distributed storage for survey content
 
 Note: IPFS connects to a remote node and will only store files for a couple hours before being dropped.
